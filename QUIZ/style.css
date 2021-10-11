@@ -1,0 +1,50 @@
+body {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+ul {
+  margin-top: 10px;
+}
+
+ul li {
+  padding: 1em 0;
+}
+
+ol {
+  margin-top: 10px;
+}
+
+ol li {
+  padding: 1em 0;
+}
+
+.answers {
+  list-style: upper-alpha;
+}
+
+.answers li:hover {
+  border: 0.1em solid #585959;
+  background-color: #e5ecfc;
+}
+
+h2 {
+  border-bottom: 1px solid #a2a9b1;
+}
+
+#main {
+  padding: 0 1.5em;
+}
+
+#section-correct-answer {
+  display: none;
+}
+
+.section {
+  margin-top: 2em;
+}
+
+.section p {
+  font-weight: bold;
+  color: red;
+}
+/*# sourceMappingURL=style.css.map */
