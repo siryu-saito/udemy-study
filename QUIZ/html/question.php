@@ -6,17 +6,17 @@ $id = '3';
 
 $data = fetchById($id);
 
-$question = $data[1];
+$question = htmlspecialchars($data[1]);
 
 $answers = [
-  'A' => $data[2],
-  'B' => $data[3],
-  'C' => $data[4],
-  'D' => $data[5],
+  'A' => htmlspecialchars($data[2]),
+  'B' => htmlspecialchars($data[3]),
+  'C' => htmlspecialchars($data[4]),
+  'D' => htmlspecialchars($data[5]),
 ];
 
-$correctAnswer = strtoupper($data[6]);
+$correctAnswer = htmlspecialchars(strtoupper($data[6]));
 $correctAnswerValue = $answers[$correctAnswer];
-$explanation = nl2br($data[7]);
+$explanation = nl2br(htmlspecialchars($data[7]));
 
 include __DIR__.'/../template/question.tpl.php';
