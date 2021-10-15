@@ -5,19 +5,18 @@ require __DIR__.'/../lib/functions.php';
 $id = '3';
 
 $data = fetchById($id);
-var_dump($data);
 
-$question = 'この問題は1の問題でしょうか？';
+$question = $data[1];
 
 $answers = [
-  'A' => 'あああ',
-  'B' => 'いいい',
-  'C' => 'ううう',
-  'D' => 'えええ',
+  'A' => $data[2],
+  'B' => $data[3],
+  'C' => $data[4],
+  'D' => $data[5],
 ];
 
-$correctAnswer = 'B';
+$correctAnswer = strtoupper($data[6]);
 $correctAnswerValue = $answers[$correctAnswer];
-$explanation = '解説解説解説解説';
+$explanation = nl2br($data[7]);
 
 include __DIR__.'/../template/question.tpl.php';

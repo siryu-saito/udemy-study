@@ -7,9 +7,11 @@ function fetchById($id) {
   // データを取得
   $question = [];
   while ($row = fgetcsv($handler)) {
-    if ($row[0] == $id) {
-      $question = $row;
-      break;
+    if (isDataRow($row)) {
+      if ($row[0] == $id) {
+        $question = $row;
+        break;
+      }
     }
   }
 
@@ -19,4 +21,62 @@ function fetchById($id) {
   // データを閉じる
   return $question;
 
+}
+
+function isDataRow(array $row)
+{
+    // データの項目数が足りているか判定
+    if (count($row) !== 8) {
+        return false;
+    }
+
+    // データの項目の中身がすべて埋まっているか確認する
+    foreach ($row as $value) {
+        // 項目の値が空か判定
+        if (empty($value)) {
+            return false;
+        }
+    }
+
+    // idの項目が数字ではない場合は無視する
+    if (!is_numeric($row[0])) {
+        return false;
+    }
+
+    // 正しい答えはa,b,c,dのどれか
+    $correctAnswer = strtoupper($row[6]);
+    $availableAnswers = ['A', 'B', 'C', 'D'];
+    if (!in_array($correctAnswer, $availableAnswers)) {
+        return false;
+    }
+
+    // すべてチェックが問題なければtrue
+    return true;
+}
+
+/**
+ * 取得できたクイズのデータ1行を利用しやすいように連想配列に変換
+ * 値をHTMLに組み込めるようにエスケープも行う
+ *
+ * @param array $data クイズ情報(1問分)
+ *
+ * @return array 整形したクイズの情報
+ */
+function generateFormattedData($data)
+{
+    // 構造化した配列を作成する
+    $formattedData = [
+        'id' => escape($data[0]),
+        'question' => escape($data[1], true),
+        'answers' => [
+            'A' => escape($data[2]),
+            'B' => escape($data[3]),
+            'C' => escape($data[4]),
+            'D' => escape($data[5]),
+        ],
+        'correctAnswer' => escape(strtoupper($data[6])),
+        'explanation' => escape($data[7], true),
+    ];
+
+    return $formattedData;
 }
