@@ -80,3 +80,25 @@ function generateFormattedData($data)
 
     return $formattedData;
 }
+
+/**
+ * HTMLに組み込むために必要なエスケープ処理を行う
+ *
+ * @param string $data エスケープしたい情報
+ * @param bool $nl2br 改行を<br>に変換する場合はtrue
+ *
+ * @return string エスケープ済の文字列
+ */
+function escape($data, $nl2br = false)
+{
+    // HTMLに埋め込んでも大丈夫な文字に変換する
+    $convertedData = htmlspecialchars($data, ENT_HTML5);
+
+    // 改行コードを<br>タグに変換するか判定
+    if ($nl2br) {
+        /// 改行コードを<br>タグに変換したものをを返却
+        return nl2br($convertedData);
+    }
+
+    return $convertedData;
+}

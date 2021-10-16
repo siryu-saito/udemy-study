@@ -6,17 +6,12 @@ $id = '3';
 
 $data = fetchById($id);
 
-$question = htmlspecialchars($data[1]);
+$formattedData = generateFormattedData($data);
 
-$answers = [
-  'A' => htmlspecialchars($data[2]),
-  'B' => htmlspecialchars($data[3]),
-  'C' => htmlspecialchars($data[4]),
-  'D' => htmlspecialchars($data[5]),
-];
-
-$correctAnswer = htmlspecialchars(strtoupper($data[6]));
+$question = $formattedData['question'];
+$answers = $formattedData['answers'];
+$correctAnswer = $formattedData['correctAnswer'];
 $correctAnswerValue = $answers[$correctAnswer];
-$explanation = nl2br(htmlspecialchars($data[7]));
+$explanation = $formattedData['explanation'];
 
 include __DIR__.'/../template/question.tpl.php';
