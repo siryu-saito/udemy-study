@@ -28,8 +28,8 @@
     <div id="section-correct-answer" class="section">
       <h2>答え<?php echo $id; ?></h2>
       <p>
-        <span id="correct-answer"><?php echo $correctAnswer; ?>. <?php echo $correctAnswerValue; ?></span><br>
-        <?php echo $explanation; ?>
+        <span id="correct-answer"></span><br>
+        <span id="explanation"></span>
       </p>
     </div>
 
