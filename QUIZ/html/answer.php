@@ -9,10 +9,16 @@ $selectedAnswer = $_POST['selectedAnswer'] ?? '';
 $data = fetchById($id);
 
 if (!$data) {
+  // HTTPレスポンスのヘッダを404にする
   header('HTTP/1.1 404 Not Found');
 
-  header('Content-Type: text/html; charset=UTF-8');
-  include __DIR__.'/../template/404.tpl.php';
+  // レスポンスの種類を指定する
+  header('Content-Type: application/json; charset=UTF-8');
+
+  $response = [
+    'message' => '指定されたIDは見つけられませんでした',
+
+  ];
 
   exit(9);
 }
