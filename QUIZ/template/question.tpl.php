@@ -26,7 +26,7 @@
     </div>
 
     <div id="section-correct-answer" class="section">
-      <h2>答え<?php echo $id; ?></h2>
+      <h2>答え</h2>
       <p>
         <span id="correct-answer"></span><br>
         <span id="explanation"></span>

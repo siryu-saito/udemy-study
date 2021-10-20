@@ -1,5 +1,20 @@
 <?php
 
+function loadTemplate($filename, array $assignData = []) {
+  extract($assignData);
+  include __DIR__.'/../template/'.$filename.'.tpl.php';
+}
+
+function error404() {
+  header('HTTP/1.1 404 Not Found');
+
+  header('Content-Type: text/html; charset=UTF-8');
+
+  loadTemplate('404');
+
+  exit(9);
+}
+
 function fetchById($id) {
   // ファイルを開く
   $handler = fopen(__DIR__.'/data.csv', 'r');
